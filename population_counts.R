@@ -11,11 +11,30 @@ suppressWarnings({
 })
 
 cpd_fixed <- gsub('Armagh City, Banbridge and Craigavon', '"Armagh City, Banbridge and Craigavon"', cpd_raw, fixed = TRUE)
-cpd_fixed <- gsub('Newry, Mourne and Down', '"Newry, Mourne and Down"', cpd_fixed, fixed = TRUE)
 cpd_fixed <- gsub('Shankill (Armagh, Banbridge and Craigavon)', '"Shankill (Armagh, Banbridge and Craigavon)"', cpd_fixed, fixed = TRUE)
 cpd_fixed <- gsub('Dromore (Armagh, Banbridge and Craigavon)', '"Dromore (Armagh, Banbridge and Craigavon)"', cpd_fixed, fixed = TRUE)
 cpd_fixed <- gsub('Cathedral (Armagh, Banbridge and Craigavon)', '"Cathedral (Armagh, Banbridge and Craigavon)"', cpd_fixed, fixed = TRUE)
+
+cpd_fixed <- gsub('Newry, Mourne and Down', '"Newry, Mourne and Down"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('Cathedral ("Newry, Mourne and Down")', '"Cathedral (Newry, Mourne and Down)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('Abbey ("Newry, Mourne and Down")', '"Abbey (Newry, Mourne and Down)"', cpd_fixed, fixed = TRUE)
+
 cpd_fixed <- gsub('Boho,Cleenish and Letterbreen', '"Boho,Cleenish and Letterbreen"', cpd_fixed, fixed = TRUE)
+
+cpd_fixed <- gsub('ANNAGHMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)', '"ANNAGHMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('BAND H (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)', '"BAND H (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('DROMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)', '"DROMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('EGLISH (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)', '"EGLISH (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('KILMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)', '"KILMORE (ARMAGH CITY, BANBRIDGE AND CRAIGAVON LGD)"', cpd_fixed, fixed = TRUE)
+
+cpd_fixed <- gsub('BAND H (NEWRY, MOURNE AND DOWN LGD)', '"BAND H (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('BELLEEK (NEWRY, MOURNE AND DOWN LGD)', '"BELLEEK (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('CREGGAN (NEWRY, MOURNE AND DOWN LGD)', '"CREGGAN (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('GLEN (NEWRY, MOURNE AND DOWN LGD)', '"GLEN (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('KILLEEN (NEWRY, MOURNE AND DOWN LGD)', '"KILLEEN (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('KILMORE (NEWRY, MOURNE AND DOWN LGD)', '"KILMORE (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+cpd_fixed <- gsub('MAGHERA (NEWRY, MOURNE AND DOWN LGD)', '"MAGHERA (NEWRY, MOURNE AND DOWN LGD)"', cpd_fixed, fixed = TRUE)
+
 
 # save new CSV file
 
