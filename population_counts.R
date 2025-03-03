@@ -1,3 +1,6 @@
+# Ctrl + Shift + S to run
+# or click Source
+
 library(jsonlite)
 library(dplyr)
 library(openxlsx)
@@ -108,12 +111,13 @@ dz_areas <- cpd_data %>%
          ) %>% 
   group_by(Area, DZ2021, DZ2021_name) %>% 
   summarise() %>% 
-  filter(!is.na(Area))
+  filter(!is.na(Area)) %>% 
+  left_join(mye_data,
+            by = "DZ2021") %>% 
+  mutate(link = paste0("https://explore.nisra.gov.uk/local-stats/", DZ2021))
 
 # Sum up for populations
 populations <- dz_areas %>% 
-  left_join(mye_data,
-            by = "DZ2021") %>% 
   group_by(Area) %>% 
   summarise(Population = sum(Population))
 
@@ -139,7 +143,27 @@ writeDataTable(wb, "Areas",
                startRow = 2,
                headerStyle = bold)
 
-setColWidths(wb, "Areas", cols = 1:ncol(dz_areas), widths = c(40, 10, 30))
+links <- dz_areas$link
+
+names(links) <- paste("Link to map for", dz_areas$DZ2021_name)
+class(links) <- "hyperlink"
+
+writeData(wb, "Areas",
+          x = links,
+          startRow = 3,
+          startCol = 5)
+
+formulae <- paste0("=SUBTOTAL(103, A", 2 + 1:nrow(dz_areas), ")")
+
+writeFormula(wb, "Areas",
+             x = formulae,
+             startRow = 3,
+             startCol = 6)
+
+
+
+setColWidths(wb, "Areas", cols = 1:ncol(dz_areas), widths = c(40, 10, 30, 13, 43))
+setColWidths(wb, "Areas", cols = ncol(dz_areas) + 1, hidden = TRUE)
 
 addWorksheet(wb, "Population Figures")
 
@@ -157,6 +181,13 @@ writeDataTable(wb, "Population Figures",
                startRow = 2,
                withFilter = FALSE,
                headerStyle = bold)
+
+formulae <- paste0("=SUMIFS(Areas!D:D, Areas!A:A, A", 2 + 1:nrow(populations),", Areas!F:F, 1)")
+
+writeFormula(wb, "Population Figures",
+             x = formulae,
+             startRow = 3,
+             startCol = 2)
 
 addStyle(wb, "Population Figures",
          style = right_bold,
